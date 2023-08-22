@@ -1,0 +1,30 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="me.carda.awesome_notifications">
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+  
+    <application>
+
+        <receiver android:name=".notifications.broadcastReceivers.DismissedNotificationReceiver"
+            android:exported="false"/>
+        <receiver android:name=".notifications.broadcastReceivers.ScheduledNotificationReceiver"
+            android:exported="false"/>
+        <receiver android:name=".notifications.broadcastReceivers.KeepOnTopActionReceiver"
+            android:exported="false"/>
+        <receiver
+            android:name=".notifications.broadcastReceivers.RefreshSchedulesReceiver"
+            android:exported="false">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
+                <action android:name="android.app.action.SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+
+    </application>
+</manifest>
