@@ -63,7 +63,6 @@ class _PhoneCallPageState extends State<PhoneCallPage> {
   Widget build(BuildContext context) {
 
     MediaQueryData mediaQueryData = MediaQuery.of(context);
-    ThemeData themeData = Theme.of(context);
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light,
@@ -89,18 +88,10 @@ class _PhoneCallPageState extends State<PhoneCallPage> {
                       widget.receivedAction.payload?['username']?.replaceAll(r'\s+', r'\n')
                       ?? 'Unknow',
                       maxLines: 4,
-                      style: themeData
-                          .textTheme
-                          .headline3
-                          ?.copyWith(color: Colors.white),
                     ),
                     Text(
                       _timer == null ?
                         'Incoming call' : 'Call in progress: ${printDuration(_secondsElapsed)}',
-                      style: themeData
-                        .textTheme
-                        .headline6
-                        ?.copyWith(color: Colors.white54, fontSize: _timer == null ? 20 : 12),
                     ),
                     SizedBox(height: 50),
                     _timer == null ?
@@ -110,15 +101,12 @@ class _PhoneCallPageState extends State<PhoneCallPage> {
                           TextButton(
                             onPressed: (){},
                             style: ButtonStyle(
-                              overlayColor: MaterialStateProperty.all<Color>(Colors.white12),
+                              overlayColor: WidgetStateProperty.all<Color>(Colors.white12),
                             ),
                             child: Column(
                               children: [
                                 Icon(FontAwesomeIcons.solidClock, color: Colors.white54),
-                                Text('Reminder me', style:  themeData
-                                    .textTheme
-                                    .headline6
-                                    ?.copyWith(color: Colors.white54, fontSize: 12, height: 2))
+                                Text('Reminder me', )
                               ],
                             )
                           ),
@@ -126,15 +114,12 @@ class _PhoneCallPageState extends State<PhoneCallPage> {
                           TextButton(
                             onPressed: (){},
                             style: ButtonStyle(
-                              overlayColor: MaterialStateProperty.all<Color>(Colors.white12),
+                              overlayColor: WidgetStateProperty.all<Color>(Colors.white12),
                             ),
                             child: Column(
                               children: [
                                 Icon(FontAwesomeIcons.solidEnvelope, color: Colors.white54),
-                                Text('Message', style:  themeData
-                                    .textTheme
-                                    .headline6
-                                    ?.copyWith(color: Colors.white54, fontSize: 12, height: 2))
+                                Text('Message', )
                               ],
                             ),
                           )
@@ -165,10 +150,7 @@ class _PhoneCallPageState extends State<PhoneCallPage> {
                             backgroundColor: Colors.white60,
                             text: 'Slide to Talk',
                             stickToEnd: true,
-                            textStyle: Theme.of(context)
-                                .textTheme
-                                .headline6
-                                ?.copyWith(color: Colors.white, fontSize: mediaQueryData.size.width * 0.05),
+
                             sliderButtonContent: RoundedButton(
                               press: (){},
                               color: Colors.white,
@@ -222,7 +204,7 @@ class RoundedButton extends StatelessWidget {
     return SizedBox(
       height: size,
       width: size,
-      child: FlatButton(
+      child: MaterialButton(
         padding: EdgeInsets.all(15 / 64 * size),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(100)),

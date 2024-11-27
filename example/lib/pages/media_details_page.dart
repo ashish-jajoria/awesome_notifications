@@ -4,9 +4,6 @@ import 'package:awesome_notifications_example/utils/common_functions.dart';
 import 'package:awesome_notifications_example/utils/notification_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:palette_generator/palette_generator.dart';
 import 'package:awesome_notifications_example/models/media_model.dart';
 import 'package:awesome_notifications_example/utils/media_player_central.dart';
@@ -157,8 +154,8 @@ class _MediaDetailsPageState extends State<MediaDetailsPage> {
     ThemeData themeData = Theme.of(context);
 
     isLighten =
-        isLighten ?? themeData.accentColorBrightness == Brightness.light;
-    mainColor = mainColor ?? themeData.backgroundColor;
+        isLighten ?? themeData.brightness == Brightness.light;
+    mainColor = mainColor ?? themeData.canvasColor;
     contrastColor = contrastColor ?? (isLighten! ? Colors.black : Colors.white);
 
     double maxSize = max(mediaQueryData.size.width, mediaQueryData.size.height);
@@ -169,24 +166,8 @@ class _MediaDetailsPageState extends State<MediaDetailsPage> {
     return Theme(
         data: Theme.of(context).copyWith(
             primaryColor: mainColor,
-            accentColor: contrastColor,
             scaffoldBackgroundColor: mainColor,
             disabledColor: contrastColor?.withOpacity(0.25),
-            textTheme: Theme.of(context)
-                .textTheme
-                .copyWith(
-                  headline2:
-                      TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                  headline3:
-                      TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-                  headline6:
-                      TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-                )
-                .apply(
-                  bodyColor: contrastColor,
-                  decorationColor: contrastColor,
-                  displayColor: contrastColor,
-                ),
             colorScheme: contrastColor != null
                 ? ColorScheme.light(primary: contrastColor!)
                 : null,
@@ -295,7 +276,7 @@ class _MediaDetailsPageState extends State<MediaDetailsPage> {
   Widget mediaCloseCaption(ThemeData themeData, double imageHeight,
       double imageWidth, MediaQueryData mediaQueryData, double maxSize) {
     TextStyle? textStyle =
-        themeData.textTheme.headline6?.copyWith(color: contrastColor);
+        themeData.textTheme.bodyMedium?.copyWith(color: contrastColor);
     String subtitle = MediaPlayerCentral.getCloseCaption(durationPlayed!);
 
     return Container(
@@ -457,13 +438,13 @@ class _MediaDetailsPageState extends State<MediaDetailsPage> {
         children: <Widget>[
           Text(
             band ?? 'No track',
-            style: Theme.of(context).textTheme.headline2,
+            style: Theme.of(context).textTheme.bodyMedium,
             textAlign: TextAlign.center,
           ),
           SizedBox(height: maxSize * 0.01),
           Text(
             music ?? '',
-            style: Theme.of(context).textTheme.headline3,
+            style: Theme.of(context).textTheme.bodyLarge,
             textAlign: TextAlign.center,
           )
         ],

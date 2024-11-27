@@ -1,8 +1,6 @@
 import 'dart:ui' as ui;
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class DoubleSliderToConfirm extends StatefulWidget {
   /// Height of the slider. Defaults to 70.
@@ -148,8 +146,6 @@ class _DoubleSliderToConfirmState extends State<DoubleSliderToConfirm> {
 
   @override
   Widget build(BuildContext context) {
-
-    MediaQueryData mediaQueryData = MediaQuery.of(context);
 
     BoxShadow shadow;
     if (widget.shadow == null) {

@@ -15,7 +15,7 @@ import 'package:awesome_notifications/awesome_notifications.dart' as Utils
 import 'package:awesome_notifications_example/models/media_model.dart';
 import 'package:awesome_notifications_example/utils/common_functions.dart';
 import 'package:awesome_notifications_example/utils/media_player_central.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 /* *********************************************
     LARGE TEXT FOR OUR NOTIFICATIONS TESTS
@@ -29,8 +29,8 @@ String lorenIpsumText =
     'anim id est laborum';
 
 Future<void> externalUrl(String url) async {
-  if (await canLaunch(url)) {
-    await launch(url);
+  if (await canLaunchUrlString(url)) {
+    await launchUrlString(url);
   } else {
     throw 'Could not launch $url';
   }

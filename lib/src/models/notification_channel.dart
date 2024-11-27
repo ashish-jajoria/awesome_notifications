@@ -1,17 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:awesome_notifications/src/enumerators/default_ringtone_type.dart';
-import 'package:awesome_notifications/src/enumerators/group_alert_behaviour.dart';
-import 'package:awesome_notifications/src/enumerators/group_sort.dart';
-import 'package:awesome_notifications/src/enumerators/media_source.dart';
-import 'package:awesome_notifications/src/enumerators/notification_importance.dart';
-import 'package:awesome_notifications/src/enumerators/notification_privacy.dart';
-import 'package:awesome_notifications/src/exceptions/awesome_exception.dart';
 import 'package:awesome_notifications/src/models/model.dart';
-import 'package:awesome_notifications/src/utils/assert_utils.dart';
-import 'package:awesome_notifications/src/utils/bitmap_utils.dart';
-import 'package:awesome_notifications/src/utils/string_utils.dart';
 import 'package:flutter/material.dart';
 
 /// A representation of default settings that applies to all notifications with same channel key

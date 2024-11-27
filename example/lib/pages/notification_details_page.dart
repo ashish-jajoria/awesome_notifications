@@ -1,11 +1,8 @@
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart' hide DateUtils;
 //import 'package:flutter/material.dart' as Material show DateUtils;
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
@@ -182,8 +179,6 @@ class _NotificationDetailsPageState extends State<NotificationDetailsPage> {
                                       fontWeight: FontWeight.bold)),
                               TextSpan(
                                 text: '\n$displayedDate',
-                                style: themeData.textTheme.subtitle2
-                                    ?.copyWith(color: Colors.black26),
                               )
                             ])),
                           )
@@ -200,7 +195,7 @@ class _NotificationDetailsPageState extends State<NotificationDetailsPage> {
                                   child: Text(
                                       widget.receivedNotification.bodyWithoutHtml ??
                                           '',
-                                      style: themeData.textTheme.bodyText2)),
+                                      ),),
                     ],
                   ),
                 ),
@@ -221,14 +216,12 @@ class _NotificationDetailsPageState extends State<NotificationDetailsPage> {
                             children: <Widget>[
                               Text(
                                 'ReceivedNotification details:',
-                                style: themeData.textTheme.subtitle1
-                                    ?.copyWith(color: themeData.hintColor),
+
                               ),
                               SizedBox(height: 20),
                               Text(
                                 widget.results,
-                                style: themeData.textTheme.bodyText2
-                                    ?.copyWith(color: themeData.hintColor),
+
                               ),
                             ],
                           )),
