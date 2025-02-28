@@ -21,8 +21,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.regex.Pattern;
 
-import io.flutter.view.FlutterMain;
-
 import static me.carda.awesome_notifications.Definitions.MEDIA_VALID_ASSET;
 import static me.carda.awesome_notifications.Definitions.MEDIA_VALID_FILE;
 import static me.carda.awesome_notifications.Definitions.MEDIA_VALID_NETWORK;
@@ -41,10 +39,6 @@ public class BitmapUtils extends MediaUtils {
 
             case File:
                 returnedBitmap = getBitmapFromFile(bitmapPath);
-                break;
-
-            case Asset:
-                returnedBitmap = getBitmapFromAsset(context, bitmapPath);
                 break;
 
             case Network:
@@ -152,35 +146,6 @@ public class BitmapUtils extends MediaUtils {
         int resourceId = getDrawableResourceId(context, bitmapReference);
         if(resourceId <= 0) return null;
         return BitmapFactory.decodeResource(context.getResources(), resourceId);
-    }
-
-    public static Bitmap getBitmapFromAsset(Context context, String bitmapPath) {
-        bitmapPath = BitmapUtils.cleanMediaPath(bitmapPath);
-
-        if(bitmapPath == null) return null;
-
-        //String appDir = context.getApplicationInfo().dataDir;
-        //String filePathName = appDir +"/app_flutter/"+ bitmapPath;
-
-        Bitmap bitmap = null;
-        InputStream inputStream = null;
-        try {
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                inputStream = context.getAssets().open("flutter_assets/" + bitmapPath);
-            } else {
-                String assetLookupKey = FlutterMain.getLookupKeyForAsset(bitmapPath);
-                AssetManager assetManager = context.getAssets();
-                AssetFileDescriptor assetFileDescriptor = assetManager.openFd(assetLookupKey);
-                inputStream = assetFileDescriptor.createInputStream();
-            }
-
-            bitmap = BitmapFactory.decodeStream(inputStream);
-            return bitmap;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     private static Bitmap getBitmapFromFile(String bitmapPath){

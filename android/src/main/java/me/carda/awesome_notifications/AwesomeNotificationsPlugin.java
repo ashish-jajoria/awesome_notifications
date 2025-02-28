@@ -31,7 +31,6 @@ import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 import android.app.Activity;
 
@@ -107,22 +106,6 @@ public class AwesomeNotificationsPlugin
     public boolean onNewIntent(Intent intent) {
         //Log.d(TAG, "onNewIntent called");
         return receiveNotificationAction(intent);
-    }
-
-    // https://flutter.dev/docs/development/packages-and-plugins/plugin-api-migration
-    // FOR OLDER FLUTTER VERSIONS (1.11 releases and bellow)
-    public static void registerWith(Registrar registrar) {
-        AwesomeNotificationsPlugin awesomeNotificationsPlugin = new AwesomeNotificationsPlugin();
-
-        awesomeNotificationsPlugin.initialActivity = registrar.activity();
-
-        awesomeNotificationsPlugin.AttachAwesomeNotificationsPlugin(
-                registrar.context(),
-                new MethodChannel(
-                        registrar.messenger(),
-                        Definitions.CHANNEL_FLUTTER_PLUGIN
-                )
-        );
     }
 
     // FOR NEWER FLUTTER VERSIONS (1.12 releases and above)
